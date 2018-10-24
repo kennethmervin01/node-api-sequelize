@@ -2,7 +2,7 @@
   "extends": ["prettier"],
   "plugins": ["prettier", "import"],
   "parser": "babel-eslint",
-  "parseOptions": {
+  "parserOptions": {
     "ecmaVersion": 2016,
     "sourceType": "module"
   },
