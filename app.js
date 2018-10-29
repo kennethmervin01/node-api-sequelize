@@ -4,7 +4,7 @@ import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import indexRouter from "./routes/index";
-import usersRouter from "./routes/users";
+import apiUsersRouter from "./api/routes/users";
 import models from "./models";
 
 const app = express();
@@ -29,7 +29,7 @@ models.sequelize
   });
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/api/users", apiUsersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -47,4 +47,4 @@ app.use(function(err, req, res, next) {
   res.render("error");
 });
 
-module.exports = app;
+export default app;

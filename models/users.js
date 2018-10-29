@@ -36,21 +36,21 @@ export default (sequelize, Sequelize) => {
   //   });
   // };
 
-  User.beforeSave = async (user, options) => {
-    let err;
-    if (user.changed("password")) {
-      let salt, err;
-      [err, salt] = await bcrypt.genSaltSync(10);
-      if (err) console.log("Cant Save User Error 1");
-      [err, hash] = await bcrypt.hashSync(user.password, salt);
-      if (err) console.log("Cant Save User Error 2");
-      user.password = hash;
-    }
-  };
-
-  User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
-  };
+  // User.beforeSave = async (user, options) => {
+  //   let err;
+  //   if (user.changed("password")) {
+  //     let salt, err;
+  //     [err, salt] = await bcrypt.genSaltSync(10);
+  //     if (err) console.log("Cant Save User Error 1");
+  //     [err, hash] = await bcrypt.hashSync(user.password, salt);
+  //     if (err) console.log("Cant Save User Error 2");
+  //     user.password = hash;
+  //   }
+  // };
+  //
+  // User.prototype.validPassword = function(password) {
+  //   return bcrypt.compareSync(password, this.password);
+  // };
 
   User.hook("beforeCreate", function(user) {
     user.password = bcrypt.hashSync(
